@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 import os
+import dj_database_url
 from pathlib import Path
 
 
@@ -81,16 +82,16 @@ WSGI_APPLICATION = 'routes_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+import dj_database_url
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'routes_project',
-        'USER': 'postgres',
-        'PASSWORD': '1109',
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
+    "default": dj_database_url.config(
+        default="postgres://username:password@host:port/database",
+        conn_max_age=600,
+        ssl_require=True,
+    )
 }
+
 
 
 
